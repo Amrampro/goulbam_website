@@ -1,36 +1,237 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 GoulBAM Enterprises – Plateforme Web Officielle
 
-## Getting Started
+Bienvenue sur le dépôt du site officiel de **GoulBAM Enterprises**, une entreprise spécialisée dans les solutions digitales, le consulting, le marketing, le design et la formation.
 
-First, run the development server:
+Ce projet est une plateforme web moderne développée avec **Next.js**, visant à présenter l’entreprise, attirer des clients, gérer les demandes et offrir une expérience utilisateur premium.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 🌍 Vision
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+GoulBAM Enterprises est une entreprise **sans frontières**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Nous travaillons avec :
+- des clients partout dans le monde 🌐  
+- des talents internationaux 💼  
+- des projets à impact digital 🚀  
 
-## Learn More
+Peu importe votre localisation, vous pouvez collaborer avec nous.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 🎯 Objectifs du site
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ce site permet de :
 
-## Deploy on Vercel
+- Présenter l’entreprise et sa vision
+- Mettre en avant les services et expertises
+- Générer des leads (formulaire de contact)
+- Offrir une image professionnelle haut de gamme
+- Centraliser la communication avec les prospects
+- Servir de base pour des évolutions futures (SaaS, CRM, etc.)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 🧠 Stack technique
+
+### Frontend
+- Next.js (App Router)
+- React
+- TypeScript
+- TailwindCSS
+
+### Backend (intégré)
+- API Routes Next.js
+- Nodemailer (SMTP Gmail)
+
+### UI / UX
+- Design premium
+- Animations dynamiques
+- Responsive (mobile-first)
+- Architecture modulaire
+
+---
+
+# 📁 Structure du projet
+
+src/
+├── app/
+│   ├── (public)/
+│   │   ├── page.tsx
+│   │   ├── a-propos/
+│   │   ├── services/
+│   │   ├── contact/
+│   │   ├── projets/
+│   │   ├── blog/
+│   │   ├── nexium-institute/
+│   │   ├── programme-ambassadeur/
+│   │   ├── mentions-legales/
+│   │   └── politique-confidentialite/
+│   │
+│   ├── api/
+│   │   └── contact/
+│   │       └── route.ts
+│
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.tsx
+│   │   └── Footer.tsx
+│   │
+│   ├── sections/
+│   │   ├── home/
+│   │   ├── contact/
+│   │   └── ...
+│   │
+│   ├── legal/
+│   │   └── LegalPageLayout.tsx
+│   │
+│   └── ui/
+│       ├── Container.tsx
+│       ├── AnimatedSection.tsx
+│       └── CookieConsentModal.tsx
+
+---
+
+# ✉️ Fonctionnalité clé : Formulaire de contact
+
+Le formulaire permet d’envoyer une demande directement à :
+
+👉 **goulbam8@gmail.com**
+
+### Fonctionnement :
+
+1. L’utilisateur remplit le formulaire  
+2. Une requête est envoyée vers `/api/contact`  
+3. Le serveur envoie un email via SMTP  
+4. GoulBAM reçoit la demande en temps réel  
+
+---
+
+# 🔐 Configuration SMTP
+
+Créer un fichier `.env.local` :
+
+SMTP_HOST=smtp.gmail.com  
+SMTP_PORT=465  
+SMTP_SECURE=true  
+
+SMTP_USER=goulbam8@gmail.com  
+SMTP_PASS=YOUR_APP_PASSWORD  
+
+MAIL_FROM_NAME=GoulBAM Enterprises  
+MAIL_FROM_EMAIL=goulbam8@gmail.com  
+MAIL_TO=goulbam8@gmail.com  
+
+⚠️ IMPORTANT :
+
+- Utiliser un **mot de passe d’application Gmail**
+- Ne jamais commit ce fichier
+- Ajouter `.env.local` dans `.gitignore`
+
+---
+
+# 🍪 Gestion des cookies
+
+Le site inclut :
+
+- Modal de consentement RGPD
+- Choix des cookies :
+  - Essentiels
+  - Analytiques
+  - Marketing
+- Sauvegarde en localStorage
+- Possibilité de modifier les préférences
+
+---
+
+# ⚖️ Pages légales
+
+- `/mentions-legales`
+- `/politique-confidentialite`
+
+Accessibles depuis le footer.
+
+---
+
+# 🎨 Expérience utilisateur
+
+- Design premium moderne
+- Interface claire
+- Animations fluides
+- Responsive sur tous les appareils
+- UX professionnelle
+
+---
+
+# 🏢 Services proposés
+
+- Développement web
+- Développement applicatif
+- Solutions mobiles
+- Consulting & conseil
+- Marketing digital
+- Design graphique
+- Conception architecturale
+- Formation (Nexium Institute)
+
+---
+
+# 🚀 Installation
+
+git clone https://github.com/ton-repo/goulbam-site.git  
+cd goulbam-site  
+npm install  
+npm run dev  
+
+---
+
+# 🧪 Production
+
+npm run build  
+npm start  
+
+---
+
+# 📌 Améliorations futures
+
+- Dashboard admin  
+- Base de données pour les contacts  
+- CRM intégré  
+- Authentification  
+- Blog dynamique  
+- Multilingue (FR / EN)  
+- SEO avancé  
+- Analytics  
+- CMS  
+
+---
+
+# 🤝 Contribution
+
+Projet interne à GoulBAM Enterprises.  
+Toute contribution doit être validée.
+
+---
+
+# 📩 Contact
+
+📧 contact@goulbam.com  
+📧 goulbam8@gmail.com  
+📱 WhatsApp : +237 696 896 758  
+
+---
+
+# 🏁 Conclusion
+
+Ce projet représente une base solide pour :
+
+- la croissance digitale de GoulBAM  
+- la génération de leads  
+- la mise en place de futurs produits SaaS  
+
+---
+
+# 🧾 Signature
+
+**GoulBAM Enterprises**  
+_"Construire des solutions digitales sans frontières."_
