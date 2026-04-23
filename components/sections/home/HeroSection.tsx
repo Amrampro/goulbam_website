@@ -5,17 +5,31 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code2, Layers3, Sparkles, GraduationCap } from "lucide-react";
 import Container from "@/components/ui/Container";
 
-const floatingAnimation = {
+import type { Variants } from "framer-motion";
+
+const floatingAnimation: Variants = {
   initial: { y: 0 },
   animate: {
     y: [-6, 6, -6],
     transition: {
       duration: 6,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   },
 };
+
+// const floatingAnimation = {
+//   initial: { y: 0 },
+//   animate: {
+//     y: [-6, 6, -6],
+//     transition: {
+//       duration: 6,
+//       repeat: Infinity,
+//       ease: "easeInOut",
+//     },
+//   },
+// };
 
 export default function HeroSection() {
   return (

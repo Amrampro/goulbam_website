@@ -5,6 +5,7 @@ export const mockAdminUser: AdminUser = {
   fullName: "Admin GoulBAM",
   email: "admin@goulbam.com",
   isAdmin: true,
+  isActive: true,
   avatar: null,
   createdAt: "2026-04-17T10:00:00.000Z",
 };
