@@ -63,7 +63,7 @@ export default function HeroSection() {
               transition={{ duration: 0.85, delay: 0.1 }}
               className="mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
             >
-              Nous aidons les entreprises à :)
+              Nous aidons les entreprises à
               <span className="bg-gradient-to-r from-[#7DD3FC] via-[#05A2DA] to-white bg-clip-text text-transparent">
                 {" "}
                 construire, digitaliser et faire évoluer{" "}
