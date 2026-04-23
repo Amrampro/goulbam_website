@@ -54,7 +54,7 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 rounded-full border border-[#05A2DA]/25 bg-[#05A2DA]/10 px-4 py-2 text-sm text-[#8BDDFF]"
             >
               <Sparkles size={16} />
-              Solutions numériques, logiciels et formation
+              Le monde numérique à une autre dimension
             </motion.div>
 
             <motion.h1
