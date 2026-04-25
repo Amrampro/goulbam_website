@@ -6,12 +6,12 @@ import Link from "next/link";
 const footerLinks = {
   navigation: [
     { label: "Accueil", href: "/" },
-    { label: "À propos", href: "/a-propos" },
+    { label: "À propos", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Nexium Institute", href: "/nexium-institute" },
     { label: "Projets", href: "/projets" },
     { label: "Blog", href: "/blog" },
-    { label: "Programme Ambassadeur", href: "/programme-ambassadeur" },
+    { label: "Programme Ambassadeur", href: "/ambassadors" },
     { label: "Contact", href: "/contact" },
   ],
   services: [
