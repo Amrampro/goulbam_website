@@ -1,3 +1,7 @@
+// app/(public)/projets/page.tsx
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import ProjectsHeroSection from "@/components/sections/projects/ProjectsHeroSection";
 import ProjectsGridSection from "@/components/sections/projects/ProjectsGridSection";
 import { getPublishedProjects } from "@/lib/projects.public";

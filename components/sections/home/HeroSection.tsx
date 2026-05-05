@@ -1,193 +1,196 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Code2, Layers3, Sparkles, GraduationCap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
+  Code2,
+  GraduationCap,
+  BriefcaseBusiness,
+} from "lucide-react";
 import Container from "@/components/ui/Container";
 
-import type { Variants } from "framer-motion";
-
-const floatingAnimation: Variants = {
-  initial: { y: 0 },
-  animate: {
-    y: [-6, 6, -6],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: "easeInOut" as const,
-    },
+const slides = [
+  {
+    eyebrow: "GoulBAM Enterprises",
+    title: "Le monde Numérique",
+    highlight: "à une autre dimension",
+    description:
+      "Nous concevons des solutions web, mobiles et métiers pour aider les entreprises à évoluer avec des outils modernes.",
+    image: "/images/transform_the_world.jpg",
+    icon: Code2,
+    primaryHref: "/contact",
+    primaryLabel: "Démarrer un projet",
+    secondaryHref: "/projets",
+    secondaryLabel: "Voir nos réalisations",
   },
-};
-
-// const floatingAnimation = {
-//   initial: { y: 0 },
-//   animate: {
-//     y: [-6, 6, -6],
-//     transition: {
-//       duration: 6,
-//       repeat: Infinity,
-//       ease: "easeInOut",
-//     },
-//   },
-// };
+  {
+    eyebrow: "Solutions digitales",
+    title: "Structurez vos activités",
+    highlight: "avec des outils modernes",
+    description:
+      "Plateformes métiers, systèmes de gestion, automatisation et interfaces adaptées aux besoins réels de votre organisation.",
+    image: "/images/nexium/about.jpg",
+    icon: BriefcaseBusiness,
+    primaryHref: "/services",
+    primaryLabel: "Découvrir nos services",
+    secondaryHref: "/contact",
+    secondaryLabel: "Demander un devis",
+  },
+  {
+    eyebrow: "Nexium Institute",
+    title: "Formez-vous au numérique",
+    highlight: "par la pratique",
+    description:
+      "Nexium Institute transmet des compétences concrètes en informatique, développement et outils numériques.",
+    image: "/images/nexium/nexium.jpg",
+    icon: GraduationCap,
+    primaryHref: "/nexium-institute",
+    primaryLabel: "Découvrir Nexium",
+    secondaryHref: "/contact",
+    secondaryLabel: "Nous contacter",
+  },
+];
 
 export default function HeroSection() {
-  return (
-    <section className="relative overflow-hidden bg-[#0B1026] pt-32 text-white">
-      <div className="absolute inset-0">
-        <div className="absolute left-[-10%] top-[-10%] h-72 w-72 rounded-full bg-[#05A2DA]/20 blur-3xl" />
-        <div className="absolute right-[-8%] top-[18%] h-80 w-80 rounded-full bg-[#202B59]/60 blur-3xl" />
-        <div className="absolute bottom-[-10%] left-[30%] h-72 w-72 rounded-full bg-[#05A2DA]/10 blur-3xl" />
-      </div>
+  const [activeIndex, setActiveIndex] = useState(0);
 
-      <div className="absolute inset-0 opacity-[0.08]">
+  const activeSlide = slides[activeIndex];
+  const Icon = activeSlide.icon;
+
+  const goToNext = () => {
+    setActiveIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const goToPrevious = () => {
+    setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(goToNext, 7000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen overflow-hidden bg-[#0B1026] pt-28 text-white">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeSlide.image}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={activeSlide.image}
+            alt={activeSlide.title}
+            fill
+            priority
+            className="object-cover"
+          />
+
+          <div className="absolute inset-0 bg-[#0B1026]/45" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1026]/60 via-[#0B1026]/30 to-[#0B1026]/70" />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="absolute inset-0 opacity-[0.05]">
         <div className="h-full w-full bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
       <Container className="relative">
-        <div className="grid min-h-[88vh] items-center gap-14 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#05A2DA]/25 bg-[#05A2DA]/10 px-4 py-2 text-sm text-[#8BDDFF]"
-            >
-              <Sparkles size={16} />
-              Le monde numérique à une autre dimension
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.1 }}
-              className="mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
-            >
-              Nous aidons les entreprises à
-              <span className="bg-gradient-to-r from-[#7DD3FC] via-[#05A2DA] to-white bg-clip-text text-transparent">
-                {" "}
-                construire, digitaliser et faire évoluer{" "}
-              </span>
-              leurs projets.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.2 }}
-              className="mt-6 max-w-2xl text-lg leading-8 text-slate-300"
-            >
-              GoulBAM Enterprises conçoit des solutions web, des plateformes
-              métiers, des outils digitaux et des expériences de formation en
-              informatique à travers <span className="font-semibold text-[#7DD3FC]">Nexium Institute</span>.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.3 }}
-              className="mt-8 flex flex-col gap-4 sm:flex-row"
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#05A2DA] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_14px_35px_rgba(5,162,218,0.35)] transition hover:scale-[1.02] hover:bg-[#0294c8]"
+        <div className="flex min-h-[calc(100vh-7rem)] items-center justify-center py-20">
+          <div className="mx-auto max-w-4xl text-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                Démarrer un projet
-                <ArrowRight className="ml-2" size={18} />
-              </Link>
-
-              <Link
-                href="/projets"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                Voir nos réalisations
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.4 }}
-              className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3"
-            >
-              {[
-                { value: "Web & Mobile", label: "Produits digitaux modernes" },
-                { value: "Solutions métiers", label: "Pour entreprises et organisations" },
-                { value: "Nexium Institute", label: "Formations en informatique" },
-              ].map((item) => (
-                <div
-                  key={item.value}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
-                >
-                  <p className="text-base font-semibold text-white">{item.value}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.label}</p>
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#05A2DA]/30 bg-[#05A2DA]/15 px-4 py-2 text-sm text-[#8BDDFF] backdrop-blur-sm">
+                  <Sparkles size={16} />
+                  {activeSlide.eyebrow}
                 </div>
-              ))}
-            </motion.div>
-          </div>
 
-          <div className="relative">
-            <motion.div
-              variants={floatingAnimation}
-              initial="initial"
-              animate="animate"
-              className="relative mx-auto max-w-xl"
-            >
-              <div className="absolute -left-10 top-16 h-32 w-32 rounded-full bg-[#05A2DA]/20 blur-2xl" />
-              <div className="absolute -right-6 bottom-8 h-40 w-40 rounded-full bg-[#202B59]/70 blur-2xl" />
+                {/* <div className="mx-auto mt-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-[#7DD3FC] backdrop-blur-sm">
+                  <Icon size={26} />
+                </div> */}
 
-              <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-md">
-                <div className="rounded-[28px] border border-white/10 bg-gradient-to-br from-[#111936] to-[#18214A] p-5">
-                  <div className="grid gap-4">
-                    <div className="rounded-3xl border border-[#05A2DA]/20 bg-[#0E1634] p-5">
-                      <div className="flex items-center gap-3">
-                        <div className="rounded-2xl bg-[#05A2DA]/15 p-3 text-[#7DD3FC]">
-                          <Code2 size={22} />
-                        </div>
-                        <div>
-                          <p className="text-sm text-slate-300">Développement</p>
-                          <h3 className="text-lg font-semibold text-white">
-                            Applications & plateformes
-                          </h3>
-                        </div>
-                      </div>
-                    </div>
+                <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+                  {activeSlide.title}
+                  <span className="block bg-gradient-to-r from-[#7DD3FC] via-[#05A2DA] to-white bg-clip-text text-transparent">
+                    {activeSlide.highlight}
+                  </span>
+                </h1>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                        <div className="rounded-2xl bg-[#05A2DA]/15 p-3 text-[#7DD3FC] w-fit">
-                          <Layers3 size={20} />
-                        </div>
-                        <h4 className="mt-4 text-base font-semibold text-white">
-                          Processus digitalisés
-                        </h4>
-                        <p className="mt-2 text-sm leading-6 text-slate-300">
-                          Outils internes, systèmes de gestion, automatisation.
-                        </p>
-                      </div>
+                <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-200">
+                  {activeSlide.description}
+                </p>
 
-                      <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                        <div className="rounded-2xl bg-[#05A2DA]/15 p-3 text-[#7DD3FC] w-fit">
-                          <GraduationCap size={20} />
-                        </div>
-                        <h4 className="mt-4 text-base font-semibold text-white">
-                          Formation pratique
-                        </h4>
-                        <p className="mt-2 text-sm leading-6 text-slate-300">
-                          Parcours concrets en informatique via Nexium Institute.
-                        </p>
-                      </div>
-                    </div>
+                <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+                  <Link
+                    href={activeSlide.primaryHref}
+                    className="inline-flex items-center justify-center rounded-full bg-[#05A2DA] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_14px_35px_rgba(5,162,218,0.35)] transition hover:scale-[1.02] hover:bg-[#0294c8]"
+                  >
+                    {activeSlide.primaryLabel}
+                    <ArrowRight className="ml-2" size={18} />
+                  </Link>
 
-                    <div className="rounded-3xl border border-[#05A2DA]/20 bg-gradient-to-r from-[#05A2DA]/15 to-transparent p-5">
-                      <p className="text-sm text-[#8BDDFF]">
-                        Une entreprise pensée pour créer de la valeur avec la technologie.
-                      </p>
-                    </div>
-                  </div>
+                  <Link
+                    href={activeSlide.secondaryHref}
+                    className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15"
+                  >
+                    {activeSlide.secondaryLabel}
+                  </Link>
                 </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="mt-14 flex flex-col items-center justify-center gap-5 sm:flex-row">
+              <div className="flex items-center gap-2">
+                {slides.map((slide, index) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    className={`h-2.5 rounded-full transition-all ${
+                      activeIndex === index
+                        ? "w-10 bg-[#05A2DA]"
+                        : "w-2.5 bg-white/45 hover:bg-white/70"
+                    }`}
+                    aria-label={`Afficher le slide ${index + 1}`}
+                  />
+                ))}
               </div>
-            </motion.div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={goToPrevious}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15"
+                  aria-label="Slide précédent"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={goToNext}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15"
+                  aria-label="Slide suivant"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </Container>

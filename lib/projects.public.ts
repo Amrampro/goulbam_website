@@ -1,3 +1,5 @@
+// src/lib/projects.public.ts
+import { unstable_noStore as noStore } from "next/cache";
 import { RowDataPacket } from "mysql2";
 import { db } from "@/lib/db";
 import { ProjectItem } from "@/types/project";
@@ -49,7 +51,7 @@ function formatDateTimeValue(value: Date | string): string {
   return value;
 }
 
-async function mapProjectRow(row: ProjectRow): Promise<ProjectItem> {
+async function getProjectGallery(projectId: number): Promise<string[]> {
   const [galleryRows] = await db.query<GalleryRow[]>(
     `
       SELECT image_path
@@ -57,8 +59,14 @@ async function mapProjectRow(row: ProjectRow): Promise<ProjectItem> {
       WHERE project_id = ?
       ORDER BY sort_order ASC, id ASC
     `,
-    [row.id]
+    [projectId]
   );
+
+  return galleryRows.map((item) => item.image_path);
+}
+
+async function mapProjectRow(row: ProjectRow): Promise<ProjectItem> {
+  const gallery = await getProjectGallery(row.id);
 
   return {
     id: row.id,
@@ -72,7 +80,7 @@ async function mapProjectRow(row: ProjectRow): Promise<ProjectItem> {
     technologies: parseJsonArray(row.technologies_json),
     services: parseJsonArray(row.services_json),
     coverImage: row.cover_image ?? "",
-    gallery: galleryRows.map((item) => item.image_path),
+    gallery,
     challenge: row.challenge ?? "",
     solution: row.solution ?? "",
     results: parseJsonArray(row.results_json),
@@ -84,6 +92,8 @@ async function mapProjectRow(row: ProjectRow): Promise<ProjectItem> {
 }
 
 export async function getPublishedProjects(): Promise<ProjectItem[]> {
+  noStore();
+
   const [rows] = await db.query<ProjectRow[]>(
     `
       SELECT *
@@ -99,6 +109,8 @@ export async function getPublishedProjects(): Promise<ProjectItem[]> {
 export async function getPublishedProjectBySlug(
   slug: string
 ): Promise<ProjectItem | null> {
+  noStore();
+
   const [rows] = await db.query<ProjectRow[]>(
     `
       SELECT *
@@ -118,6 +130,8 @@ export async function getPublishedProjectBySlug(
 }
 
 export async function getFeaturedProjects(limit = 3): Promise<ProjectItem[]> {
+  noStore();
+
   const [rows] = await db.query<ProjectRow[]>(
     `
       SELECT *

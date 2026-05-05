@@ -1,3 +1,7 @@
+// app/(public)/page.tsx
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import HeroSection from "@/components/sections/home/HeroSection";
 import BrandStripSection from "@/components/sections/home/BrandStripSection";
 import ServicesPreviewSection from "@/components/sections/home/ServicesPreviewSection";

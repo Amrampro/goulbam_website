@@ -1,3 +1,4 @@
+// components/sections/projects/ProjectsGridSection.tsx
 "use client";
 
 import Image from "next/image";

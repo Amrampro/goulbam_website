@@ -1,3 +1,7 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const dynamicParams = true;
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProjectDetailHeroSection from "@/components/sections/projects/ProjectDetailHeroSection";
@@ -33,13 +37,13 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const projects = await getPublishedProjects();
+// export async function generateStaticParams() {
+//   const projects = await getPublishedProjects();
 
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
+//   return projects.map((project) => ({
+//     slug: project.slug,
+//   }));
+// }
 
 export default async function ProjectDetailPage({
   params,

@@ -1,3 +1,4 @@
+// components/sections/home/ProjectsPreviewSection.tsx
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import AnimatedSection from "@/components/ui/AnimatedSection";
