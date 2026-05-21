@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import BlogHeroSection from "@/components/sections/blog/BlogHeroSection";
 import BlogGridSection from "@/components/sections/blog/BlogGridSection";
 import { getPublishedBlogPosts } from "@/lib/blog.public";

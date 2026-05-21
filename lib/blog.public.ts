@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { RowDataPacket } from "mysql2";
 import { db } from "@/lib/db";
 import { BlogPostItem } from "@/types/blog";
@@ -70,6 +71,8 @@ function mapBlogRow(row: BlogRow): BlogPostItem {
 }
 
 export async function getPublishedBlogPosts(): Promise<BlogPostItem[]> {
+  noStore();
+
   const [rows] = await db.query<BlogRow[]>(
     `
       SELECT *
@@ -87,6 +90,8 @@ export async function getPublishedBlogPosts(): Promise<BlogPostItem[]> {
 export async function getPublishedBlogPostBySlug(
   slug: string
 ): Promise<BlogPostItem | null> {
+  noStore();
+
   const [rows] = await db.query<BlogRow[]>(
     `
       SELECT *
@@ -106,6 +111,8 @@ export async function getPublishedBlogPostBySlug(
 }
 
 export async function getFeaturedBlogPosts(limit = 3): Promise<BlogPostItem[]> {
+  noStore();
+
   const [rows] = await db.query<BlogRow[]>(
     `
       SELECT *
