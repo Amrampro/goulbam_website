@@ -51,7 +51,7 @@ export default function ProjectDetailHeroSection({
             transition={{ duration: 0.85, delay: 0.2 }}
             className="mt-6 max-w-3xl text-lg leading-8 text-slate-300"
           >
-            {project.fullDescription}
+            {project.shortDescription}
           </motion.p>
 
           <motion.div

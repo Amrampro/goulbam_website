@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { BlogPostItem } from "@/types/blog";
@@ -12,7 +13,28 @@ export default function BlogDetailContentSection({
   return (
     <section className="bg-white py-24">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
+        <AnimatedSection className="mx-auto max-w-4xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#05A2DA]">
+            Description
+          </p>
+          <p className="mt-5 text-lg leading-9 text-slate-700">
+            {post.excerpt}
+          </p>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.06}>
+          <div className="relative mt-12 aspect-[16/9] overflow-hidden rounded-[28px] border border-slate-200 bg-slate-100 shadow-sm">
+            <Image
+              src={post.coverImage || "/images/placeholders/blog-cover.jpg"}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 1120px"
+            />
+          </div>
+        </AnimatedSection>
+
+        <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_320px]">
           <AnimatedSection>
             <article className="max-w-4xl">
               <div className="space-y-8 text-base leading-8 text-slate-700">
